@@ -1,0 +1,56 @@
+//scatter_plot-------------
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+
+plt.figure(figsize=(8, 6))
+
+plt.scatter(x, y, color='blue')
+e
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.title('Scatter Plot Example')
+
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+//linechart-------------------
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+
+plt.figure(figsize=(8, 6))
+
+plt.plot(x, y, color='green', marker='o', linestyle='-', label='Data Line')
+
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.title('Line Chart Example')
+
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+
+plt.show()
+
+//histogram----------------------
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = np.random.radn(1000)
+
+plt.figure(figsize=(8, 6))
+
+plt.hist(data, bins=10, color='purple', edgecolor='black')
+
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Histogram Example')
+
+plt.grid(True)
+
+plt.tight_layout()
+
+plt.show()
