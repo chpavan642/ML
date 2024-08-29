@@ -1,8 +1,8 @@
 import csv
 num_attributes = 6
-a = [ ]
+a = []
 
-with open('enjoysport.csv', 'r') as csvfile:
+with open('ENJOYSPORT.csv', 'r') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         a.append(row)
@@ -13,17 +13,15 @@ hypothesis = ['0'] * num_attributes
 print(hypothesis)
 
 for j in range(num_attributes):
-    hypothesis[j] = a[0][j]
+    hypothesis[j] = a[1][j]
 
 print("FIND-S: Finding maximally specific hypothesis...")
 
 for i in range(1, len(a)):
-    if a[i][num_attributes] == 'yes':
+    if a[i][num_attributes] == '1':  
         for j in range(num_attributes):
             if a[i][j] != hypothesis[j]:
-                hypothesis[j] = '?'
-            else:
-                hypothesis[j] = a[i][j]
+                hypothesis[j] = '?' 
 
 print(f"For training instance {i+1}, the hypothesis is: {hypothesis}")
 print("The maximally specific hypothesis for the given training examples is:")
