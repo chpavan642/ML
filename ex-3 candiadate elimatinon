@@ -1,0 +1,44 @@
+import numpy as np
+import pandas as pd
+
+data = pd.read_csv('ENJOYSPORT.csv')  
+concept = np.array(data.iloc[:, :-1])  
+target = np.array(data.iloc[:, -1]) 
+
+def learn(concept, target):
+    specific_h = concept[0].copy()
+    print("Initialization of specific_h:", specific_h)
+
+   
+    general_h = [['?' for _ in range(len(specific_h))]] 
+    print("Initialization of general_h:", general_h)
+
+    for i, h in enumerate(concept):
+        if target[i] == '1':  # Assuming '1' is the positive class
+            # Update specific_h
+            for x in range(len(specific_h)):
+                if h[x] != specific_h[x]:
+                    specific_h[x] = '?'  # Specific hypothesis becomes more general
+          
+            new_general_h = []
+            for g in general_h:
+                if all(g[j] == '?' or g[j] == specific_h[j] for j in range(len(specific_h))):
+                    new_general_h.append(g)
+              
+                for j in range(len(specific_h)):
+                    if g[j] == '?':
+                        new_h = g.copy()
+                        new_h[j] = specific_h[j]
+                        if new_h not in new_general_h:
+                            new_general_h.append(new_h)
+            general_h = new_general_h
+
+    print("\nThe steps of candidate elimination:", i + 1)
+    print("Specific_h:", specific_h)
+    print("General_h:", general_h)
+
+    return specific_h, general_h
+
+s_final, g_final = learn(concept, target)
+print("Final specific_h:\n", s_final)
+print("Final general_h:\n", g_final)
